@@ -1,38 +1,215 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+*{
+font-family: 'Roboto', sans-serif;
+font-size: 1rem; ;
+box-sizing: border-box;
+padding:0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+li {
+ list-style-type: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.nav__bar{
+height: 70px;
+display: flex;
+flex-flow: row nowrap;
+justify-content: space-between;
+align-items: center;
+padding: 0 16px;
+background-color: #cafdff;
+margin: 0 auto;
+gap:8px;
+
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.button__wrapper ul {
+display: flex;
+gap: 15px;
+text-decoration: none;
+align-items: center;
+}
+
+.button__wrapper {
+display: flex;
+align-items: center;
+}
+
+.logo{
+width:300px;
+}
+
+.login {
+color:#252525;
+background-color: rgb(183, 178, 189);
+border-radius: 8px;
+text-align:center;
+padding-top: 10px;
+padding-bottom: 10px;
+padding-left: 15px;
+padding-right: 15px;
+box-shadow: 8px 8px 20px rgba(63, 62, 62, 0.3);
+border: none;
+}
+
+
+.logout {
+color: white;
+background-color: rgb(183, 178, 189);
+border-radius: 8px;
+padding-top: 10px;
+padding-bottom: 10px;
+padding-left: 15px;
+padding-right: 15px;
+text-align:center;
+box-shadow: 8px 8px 20px rgba(63, 62, 62, 0.3);
+border: 2px solid #252525;
+}
+
+.register {
+color: white;
+background-color: rgb(56, 5, 243);
+border-radius: 8px;
+text-align:center;
+padding-top: 10px;
+padding-bottom: 10px;
+padding-left: 15px;
+padding-right: 15px;
+box-shadow: 8px 8px 20px rgba(63, 62, 62, 0.3);
+border: none;
+}
+
+
+
+/*
+
+Modal
+
+*/
+
+/* The Modal (background) */
+.modal {
+  position: fixed; 
+  z-index: 1; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgb(0,0,0); 
+  background-color: rgba(0,0,0,0.4); 
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; 
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; 
+  max-width: 500px;
+  border-radius: 8px;
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Form Styling */
+.modal-content form {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.modal-content label {
+  margin-top: 10px;
+}
+
+.modal-content label, .modal-content input {
+  display:block;
+}
+
+.modal-content input {
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.modal-content button {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: rgb(56, 5, 243);
   color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
+.forgot {
+cursor: not-allowed;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.italics{
+  font-style: italic;
 }
+
+/*
+
+Modal Loading Screen
+
+*/
+/* Styles for the loading screen itself */
+.loading-screen {
+  position: absolute; /* Positions the loading screen over the modal content */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+  display: flex; /* Centers the loader */
+  justify-content: center;
+  align-items: center;
+  z-index: 10; /* Ensures it's on top of the content */
+  transition: opacity 0.5s ease-in-out;
+  opacity: 0; /* Initially hidden */
+  pointer-events: none; /* Allows clicks to pass through when hidden */
+}
+
+/* Styles for the spinning loader */
+.loader {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite; /* Applies the spin animation */
+}
+
+/* The CSS animation for the spinner */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* A class to show the loading screen */
+.loading-screen, .visible {
+  opacity: 1;
+  pointer-events: auto; /* Re-enables pointer events when visible */
+}
+
+
+
+
