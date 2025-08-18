@@ -3,6 +3,7 @@ import React from 'react';
 function Modal({ showModal, onClose, isLoading, children }) {
     if (!showModal) {
         return null;
+        
     }
 
     return (

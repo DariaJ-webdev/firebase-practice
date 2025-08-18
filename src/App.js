@@ -13,7 +13,7 @@ function App() {
   const [showModal, setShowModal] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleLogin = async (email, password) => {
+  const handleLogin = async (auth, email, password) => {
     setIsLoading(true);
     // Simulate a Firebase login
     try {
@@ -28,7 +28,7 @@ function App() {
     }
   };
 
-  const handleRegister = async (email, password) => {
+  const handleRegister = async (auth, email, password) => {
     setIsLoading(true);
     // Simulate a Firebase registration
     try {
@@ -75,7 +75,7 @@ function App() {
         onLogoutClick={handleLogout}
       />
       {showModal && (
-        <Modal onClose={() => setShowModal(null)} isLoading={isLoading}>
+        <Modal showModal={showModal} onClose={() => setShowModal(null)} isLoading={isLoading}>
           {showModal === 'login' ? (
             <LoginForm onSubmit={handleLogin} />
           ) : (
