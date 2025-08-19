@@ -9,16 +9,15 @@ import "./App.css";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userEmail, setUserEmail] = useState(null);
+  const [user, setUser] = useState(null); // Change: Store the user object
   const [showModal, setShowModal] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleLogin = async (auth, email, password) => {
+  const handleLogin = async (email, password) => {
     setIsLoading(true);
-    // Simulate a Firebase login
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      setUserEmail(email);
+      setUser(userCredential.user); // Change: Set the entire user object
       setIsLoggedIn(true);
       setShowModal(null);
     } catch (error) {
@@ -28,12 +27,11 @@ function App() {
     }
   };
 
-  const handleRegister = async (auth, email, password) => {
+  const handleRegister = async (email, password) => {
     setIsLoading(true);
-    // Simulate a Firebase registration
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      setUserEmail(email);
+      setUser(userCredential.user); // Change: Set the entire user object
       setIsLoggedIn(true);
       setShowModal(null);
     } catch (error) {
@@ -45,31 +43,28 @@ function App() {
 
   const handleLogout = () => {
     setIsLoggedIn(false);
-    setUserEmail(null);
+    setUser(null); // Change: Reset the user object on logout
   };
 
   useEffect(() => {
-  const unsubscribe = onAuthStateChanged(auth, (user) => {
-    if (user) {
-      // User is signed in, update state
-      setIsLoggedIn(true);
-      setUserEmail(user.email);
-    } else {
-      // User is signed out, reset state
-      setIsLoggedIn(false);
-      setUserEmail(null);
-    }
-  });
+    const unsubscribe = onAuthStateChanged(auth, (authUser) => {
+      if (authUser) {
+        setIsLoggedIn(true);
+        setUser(authUser); // Change: Use the user object from onAuthStateChanged
+      } else {
+        setIsLoggedIn(false);
+        setUser(null); // Change: Reset the user object
+      }
+    });
 
-  // Cleanup function to detach the listener when the component unmounts
-  return () => unsubscribe();
-}, []); 
+    return () => unsubscribe();
+  }, []);
 
   return (
     <div>
       <NavBar
         isLoggedIn={isLoggedIn}
-        userEmail={userEmail}
+        user={user} // Change: Pass the user object to NavBar
         onLoginClick={() => setShowModal('login')}
         onRegisterClick={() => setShowModal('register')}
         onLogoutClick={handleLogout}

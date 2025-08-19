@@ -210,6 +210,36 @@ Modal Loading Screen
   pointer-events: auto; /* Re-enables pointer events when visible */
 }
 
+/*
 
+avatar circle
 
+*/
 
+.avatar-circle {
+  height: 40px; 
+  width: 40px; 
+  border-radius: 50%;
+  background-color: #337ab7;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  cursor: pointer;
+  
+  /* New styles for better visibility on hover */
+  transition: all 0.3s ease; 
+  text-align: center;
+  white-space: nowrap; /* Prevents text from wrapping */
+  padding: 0 10px; /* Add some horizontal padding for the word "Logout" */
+  font-size: 14px; /* Adjust font size to fit the word */
+}
+
+/* Hover state for the avatar-circle */
+.avatar-circle:hover {
+  width: auto; /* Allow the width to adjust to the text */
+  border-radius: 20px; /* Adjust border-radius to a pill shape */
+  background-color: #d9534f; /* A different color for logout */
+  text-decoration: none;
+}
